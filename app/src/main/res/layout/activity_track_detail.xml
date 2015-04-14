@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="spartdark.com.mx.playmusic.TrackDetailActivity">
+
+    <ImageView
+        android:id="@+id/imgDetailCover"
+        android:layout_width="@dimen/width_image"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:src ="@mipmap/ic_launcher"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_xsmall"
+        />
+    <TextView
+        android:id="@+id/tvDetailName"
+        android:layout_width="wrap_content"
+        android:layout_weight=".5"
+        android:layout_height="0dp"
+        android:text="@string/hello_world"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/font_medium"/>
+    <TextView
+        android:id="@+id/tvDetailArtist"
+        android:layout_width="wrap_content"
+        android:layout_weight=".5"
+        android:layout_height="0dp"
+        android:text="@string/hello_world"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/font_xsmall"/>
+    <TextView
+        android:id="@+id/tvDetailCover"
+        android:layout_width="wrap_content"
+        android:layout_weight=".5"
+        android:layout_height="0dp"
+        android:text="@string/hello_world"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/font_xsmall"/>
+
+    <TextView
+        android:id="@+id/tvDetailTime"
+        android:layout_width="wrap_content"
+        android:layout_weight=".5"
+        android:layout_height="0dp"
+        android:text="@string/hello_world"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/font_small"/>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:id="@+id/llDetailButtons">
+        <ImageButton
+            android:id="@+id/imgDetailBackward"
+            android:layout_width="89dp"
+            android:layout_height="89dp"
+            android:src ="@mipmap/backward_play"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_xsmall"
+            android:layout_x="127dp"
+            android:layout_y="32dp"
+            android:background="@android:color/transparent"/>
+        <ImageButton
+            android:id="@+id/imgDetailPlay"
+            android:layout_width="89dp"
+            android:layout_height="89dp"
+            android:src ="@mipmap/play"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_xsmall"
+            android:layout_x="127dp"
+            android:layout_y="32dp"
+            android:background="@android:color/transparent"/>
+        <ImageButton
+            android:id="@+id/imgDetailForward"
+            android:layout_width="89dp"
+            android:layout_height="89dp"
+            android:src ="@mipmap/forward_play"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_xsmall"
+            android:layout_x="127dp"
+            android:layout_y="32dp"
+            android:background="@android:color/transparent"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
