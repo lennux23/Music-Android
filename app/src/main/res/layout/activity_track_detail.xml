@@ -62,7 +62,7 @@
         android:orientation="horizontal"
         android:id="@+id/llDetailButtons">
         <ImageButton
-            android:id="@+id/imgDetailBackward"
+            android:id="@+id/actionBackward"
             android:layout_width="89dp"
             android:layout_height="89dp"
             android:src ="@mipmap/backward_play"
@@ -73,7 +73,7 @@
             android:layout_y="32dp"
             android:background="@android:color/transparent"/>
         <ImageButton
-            android:id="@+id/imgDetailPlay"
+            android:id="@+id/actionPlay"
             android:layout_width="89dp"
             android:layout_height="89dp"
             android:src ="@mipmap/play"
@@ -84,7 +84,7 @@
             android:layout_y="32dp"
             android:background="@android:color/transparent"/>
         <ImageButton
-            android:id="@+id/imgDetailForward"
+            android:id="@+id/actionForward"
             android:layout_width="89dp"
             android:layout_height="89dp"
             android:src ="@mipmap/forward_play"
