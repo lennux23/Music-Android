@@ -33,11 +33,13 @@ public class Track {
 
         ArrayList<Track> arrayContact= new ArrayList<Track>();
 
-        arrayContact.add(new Track(context.getResources().getDrawable(R.mipmap.proanio),"Argentum","Enjambre","Proaño","3:1515"));
+        arrayContact.add(new Track(context.getResources().getDrawable(R.mipmap.proanio),"Argentum","Enjambre","Proaño","3:15"));
         arrayContact.add(new Track(context.getResources().getDrawable(R.mipmap.proanio),"Sábado Perpetuo","Enjambre","Proaño","5:14"));
         arrayContact.add(new Track(context.getResources().getDrawable(R.mipmap.monitor_volovan),"Monitor","Volovan","Monitor","3:10"));
         arrayContact.add(new Track(context.getResources().getDrawable(R.mipmap.safe_and_sound_capitalcities),"Safe & Sound","Capital Cities","In a tidal wave of mystery","4:03"));
         arrayContact.add(new Track(context.getResources().getDrawable(R.mipmap.safe_and_sound_capitalcities),"I sold my bed","Capital Cities","In a tidal wave of mystery","3:67"));
+        arrayContact.add(new Track(context.getResources().getDrawable(R.mipmap.siddhartha_siddhartha),"Control","Siddhartha","Siddhartha","2:56"));
+        arrayContact.add(new Track(context.getResources().getDrawable(R.mipmap.soy_como_quiero_ser_luis_miguel),"Ahora te puedes marchar","Luis Miguel","Soy como quiero ser","3:10"));
 
 
 
