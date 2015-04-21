@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class TrackDetailActivity extends ActionBarActivity implements View.OnClickListener {
     private int trackPosition;
@@ -30,20 +32,7 @@ public class TrackDetailActivity extends ActionBarActivity implements View.OnCli
         Intent intent = getIntent();
         trackPosition = intent.getIntExtra("TRACK", 0);
 
-        track = Track.getTracks(getApplicationContext()).get(trackPosition);
-        song = track.getUrlTrack();
-        ImageView imgDetailCover = (ImageView) findViewById(R.id.imgDetailCover);
-
-        TextView tvDetailName = (TextView) findViewById(R.id.tvDetailName);
-        TextView tvDetailArtist = (TextView) findViewById(R.id.tvDetailArtist);
-        TextView tvDetailCover = (TextView) findViewById(R.id.tvDetailCover);
-        TextView tvDetaiTime = (TextView) findViewById(R.id.tvDetailTime);
-
-        imgDetailCover.setImageDrawable(track.getCover());
-        tvDetailName.setText(track.getName());
-        tvDetailArtist.setText(track.getArtist());
-        tvDetailCover.setText(track.getCoverName());
-        tvDetaiTime.setText(track.getTime());
+        fillDataSong (trackPosition);
 
         actionPlay = (ImageButton) findViewById(R.id.actionPlay);
         actionBackward = (ImageButton) findViewById(R.id.actionBackward);
@@ -60,19 +49,14 @@ public class TrackDetailActivity extends ActionBarActivity implements View.OnCli
         MediaMetadataRetriever metadatos = new MediaMetadataRetriever();
         switch (v.getId()){
             case R.id.actionPlay:
-
                 if (isPlaying){
-                    Log.v("log", "termina de reproducir");
                     mediaPlayer.stop();
                     actionPlay.setImageResource(R.mipmap.play);
                     isPlaying = false;
 
                 } else {
-                    //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.capital_cities_i_sold_my_bed_but_not_my_stereo);
                     mediaPlayer = MediaPlayer.create(TrackDetailActivity.this,  getResources().getIdentifier("raw/"+song,
                             "raw", getPackageName()));
-                    Log.v("log", "comienza a reproducir");
-                    Log.v("song", "song "+ song);
                     mediaPlayer.start();
                     actionPlay.setImageResource(R.mipmap.stop_play);
                     isPlaying = true;
@@ -80,8 +64,54 @@ public class TrackDetailActivity extends ActionBarActivity implements View.OnCli
                 }
                 break;
             case R.id.actionBackward:
+
+                mediaPlayer.stop();
+
+                trackPosition -= 1;
+                Log.v("position","trackPosition: " + Integer.toString(trackPosition));
+
+                if (trackPosition >= 0) {
+                    fillDataSong(trackPosition);
+                    mediaPlayer = MediaPlayer.create(TrackDetailActivity.this,  getResources().getIdentifier("raw/"+song,
+                            "raw", getPackageName()));
+                    if (isPlaying) {
+                        mediaPlayer.start();
+                        actionPlay.setImageResource(R.mipmap.stop_play);
+                    }
+
+                } else {
+                    trackPosition = 0;
+                    actionPlay.setImageResource(R.mipmap.play);
+                    isPlaying = false;
+                }
+
                 break;
+
             case R.id.actionForward:
+
+                mediaPlayer.stop();
+
+                trackPosition += 1;
+                Log.v("position","trackPosition: " + Integer.toString(trackPosition));
+
+                int listTracksSize = Track.getTracks(getApplicationContext()).size();
+
+                if (trackPosition < listTracksSize) {
+                    fillDataSong(trackPosition);
+                    mediaPlayer = MediaPlayer.create(TrackDetailActivity.this,  getResources().getIdentifier("raw/"+song,
+                            "raw", getPackageName()));
+                    if (isPlaying){
+                        mediaPlayer.start();
+                        actionPlay.setImageResource(R.mipmap.stop_play);
+                    }
+                } else {
+                    trackPosition = 0;
+                    fillDataSong(trackPosition);
+                    actionPlay.setImageResource(R.mipmap.play);
+                    isPlaying = false;
+                }
+
+
                 break;
 
 
@@ -108,5 +138,32 @@ public class TrackDetailActivity extends ActionBarActivity implements View.OnCli
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        mediaPlayer.stop();
+        super.onDestroy();
+
+    }
+
+    /*
+     * Fill all metadata that is going to be show on the Detail Layout
+     */
+    public void fillDataSong (int trackPosition){
+        track = Track.getTracks(getApplicationContext()).get(trackPosition);
+        song = track.getUrlTrack();
+        ImageView imgDetailCover = (ImageView) findViewById(R.id.imgDetailCover);
+
+        TextView tvDetailName = (TextView) findViewById(R.id.tvDetailName);
+        TextView tvDetailArtist = (TextView) findViewById(R.id.tvDetailArtist);
+        TextView tvDetailCover = (TextView) findViewById(R.id.tvDetailCover);
+        TextView tvDetailTime = (TextView) findViewById(R.id.tvDetailTime);
+
+        imgDetailCover.setImageDrawable(track.getCover());
+        tvDetailName.setText(track.getName());
+        tvDetailArtist.setText(track.getArtist());
+        tvDetailCover.setText(track.getCoverName());
+        tvDetailTime.setText(track.getTime());
     }
 }
